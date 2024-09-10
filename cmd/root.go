@@ -8,7 +8,7 @@ func rootCmd() *cobra.Command {
 		Short: "CLI to track and manage your tasks",
 	}
 
-	cmd.AddCommand(addCmd())
+	cmd.AddCommand(addCmd(), updateCmd())
 
 	return cmd
 }

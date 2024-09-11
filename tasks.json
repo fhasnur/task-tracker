@@ -1,12 +1,26 @@
 {
- "last_id": 2,
- "tasks": [
-  {
-   "id": 1,
-   "description": "Buy groceries and cook dinner",
-   "status": "todo",
-   "created_at": "2024-09-10T22:01:46.4907999+07:00",
-   "updated_at": "2024-09-10T22:23:07.6132393+07:00"
-  }
- ]
+  "last_id": 4,
+  "tasks": [
+    {
+      "id": 1,
+      "description": "Buy groceries and cook dinner",
+      "status": "in-progress",
+      "created_at": "2024-09-10T22:01:46.4907999+07:00",
+      "updated_at": "2024-09-11T23:25:21.4915238+07:00"
+    },
+    {
+      "id": 3,
+      "description": "Read a book",
+      "status": "done",
+      "created_at": "2024-09-11T23:06:14.332589+07:00",
+      "updated_at": "2024-09-11T23:25:59.3927344+07:00"
+    },
+    {
+      "id": 4,
+      "description": "Drink a juice",
+      "status": "todo",
+      "created_at": "2024-09-11T23:06:54.6995125+07:00",
+      "updated_at": "2024-09-11T23:06:54.6995125+07:00"
+    }
+  ]
 }

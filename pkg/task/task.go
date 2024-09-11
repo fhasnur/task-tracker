@@ -55,3 +55,18 @@ func UpdateTask(id int, description, filename string) error {
 
 	return errors.New("task not found")
 }
+
+func DeleteTask(id int, filename string) error {
+	taskFile, err := ReadTasks(filename)
+	if err != nil {
+		return err
+	}
+
+	for i, task := range taskFile.Tasks {
+		if task.Id == id {
+			taskFile.Tasks = append(taskFile.Tasks[:i], taskFile.Tasks[i+1:]...)
+			return WriteTasks(filename, taskFile)
+		}
+	}
+	return errors.New("task not found")
+}

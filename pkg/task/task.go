@@ -99,3 +99,17 @@ func MarkTask(id int, status, filename string) error {
 	}
 	return errors.New("task not found")
 }
+
+func ListAllTasks(filename string) ([]Task, error) {
+	taskFile, err := ReadTasks(filename)
+	if err != nil {
+		return nil, err
+	}
+
+	var taskList []Task
+	for _, task := range taskFile.Tasks {
+		taskList = append(taskList, task)
+	}
+
+	return taskList, nil
+}

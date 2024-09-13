@@ -20,12 +20,13 @@ const (
 )
 
 func ValidateStatus(status string) error {
-	switch status {
-	case StatusTodo, StatusInProgress, StatusDone:
-		return nil
-	default:
-		return errors.New("invalid task status")
+	validStatuses := []string{"all", StatusTodo, StatusInProgress, StatusDone}
+	for _, validStatus := range validStatuses {
+		if status == validStatus {
+			return nil
+		}
 	}
+	return errors.New("invalid task status")
 }
 
 func AddTask(description, filename string) error {
@@ -100,16 +101,43 @@ func MarkTask(id int, status, filename string) error {
 	return errors.New("task not found")
 }
 
-func ListAllTasks(filename string) ([]Task, error) {
+func ListTasks(status, filename string) ([]Task, error) {
+	if err := ValidateStatus(status); err != nil {
+		return nil, err
+	}
+
 	taskFile, err := ReadTasks(filename)
 	if err != nil {
 		return nil, err
 	}
 
-	var taskList []Task
-	for _, task := range taskFile.Tasks {
-		taskList = append(taskList, task)
+	var filteredTasks []Task
+	switch status {
+	case "all":
+		filteredTasks = taskFile.Tasks
+	case StatusTodo:
+		for _, task := range taskFile.Tasks {
+			if task.Status == StatusTodo {
+				filteredTasks = append(filteredTasks, task)
+			}
+		}
+	case StatusInProgress:
+		for _, task := range taskFile.Tasks {
+			if task.Status == StatusInProgress {
+				filteredTasks = append(filteredTasks, task)
+			}
+		}
+	case StatusDone:
+		for _, task := range taskFile.Tasks {
+			if task.Status == StatusDone {
+				filteredTasks = append(filteredTasks, task)
+			}
+		}
 	}
 
-	return taskList, nil
+	if len(filteredTasks) == 0 {
+		return nil, errors.New("no tasks found")
+	}
+
+	return filteredTasks, nil
 }

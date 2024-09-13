@@ -14,7 +14,7 @@ func rootCmd() *cobra.Command {
 		deleteCmd(),
 		markInProgressCmd(),
 		markDoneCmd(),
-		listAllCmd(),
+		listCmd(),
 	)
 
 	return cmd

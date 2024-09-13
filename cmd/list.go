@@ -8,12 +8,21 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func listAllCmd() *cobra.Command {
+func listCmd() *cobra.Command {
 	return &cobra.Command{
-		Use:   "list",
-		Short: "List all tasks",
+		Use:   "list [status]",
+		Short: "List all tasks. You can filter tasks by status",
 		Run: func(cmd *cobra.Command, args []string) {
-			tasks, err := task.ListAllTasks(filename)
+			var tasks []task.Task
+			var err error
+
+			status := "all"
+
+			if len(args) > 0 {
+				status = args[0]
+			}
+
+			tasks, err = task.ListTasks(status, filename)
 			if err != nil {
 				fmt.Println("Error listing tasks:", err)
 				return

@@ -33,7 +33,7 @@ To add a new task, run:
 Example:
 ```bash
 ./task-cli add "Buy groceries"
-#Output: Task added successfully
+#Output: Task added successfully (ID: 1)
 ```
 
 ### Updating a Task

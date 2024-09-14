@@ -30,10 +30,9 @@ To add a new task, run:
 ```bash
 ./task-cli add [description]
 ```
-Example
+Example:
 ```bash
 ./task-cli add "Buy groceries"
-
 #Output: Task added successfully
 ```
 
@@ -42,10 +41,9 @@ To update an existing task, use:
 ```bash
 ./task-cli update [id] [new description]
 ```
-Example
+Example:
 ```bash
 ./task-cli update 1 "Buy groceries and cook dinner"
-
 #Output: Task updated successfully
 ```
 
@@ -54,10 +52,9 @@ To delete a task, run:
 ```bash
 ./task-cli delete [id]
 ```
-Example
+Example:
 ```bash
 ./task-cli delete 1
-
 #Output: Task deleted successfully
 ```
 
@@ -66,10 +63,9 @@ To mark a task as in-progress, use:
 ```bash
 ./task-cli mark-in-progress [id]
 ```
-Example
+Example:
 ```bash
 ./task-cli mark-in-progress 1
-
 #Output: Task marked as in-progress successfully
 ```
 
@@ -78,10 +74,9 @@ To mark a task as done, run:
 ```bash
 ./task-cli mark-done [id]
 ```
-Example
+Example:
 ```bash
 ./task-cli mark-done 1
-
 #Output: Task marked as done successfully
 ```
 
@@ -90,7 +85,7 @@ To list all tasks, use:
 ```bash
 ./task-cli list
 ```
-**Example Output**
+Example Output:
 ```bash
 ID  | Description                    | Status       | Created At       | Updated At
 ------------------------------------------------------------------------------------------
@@ -108,7 +103,7 @@ To filter tasks by status (e.g., todo, in-progress or done), run:
 ```bash
 ./task-cli list todo
 ```
-Example Output
+Example Output:
 ```bash
 ID  | Description                    | Status       | Created At       | Updated At
 ------------------------------------------------------------------------------------------
@@ -119,7 +114,7 @@ ID  | Description                    | Status       | Created At       | Updated
 ```bash
 ./task-cli list in-progress
 ```
-Example Output
+Example Output:
 ```bash
 ID  | Description                    | Status       | Created At       | Updated At
 ------------------------------------------------------------------------------------------
@@ -131,7 +126,7 @@ ID  | Description                    | Status       | Created At       | Updated
 ```bash
 ./task-cli list done
 ```
-Example Output
+Example Output:
 ```bash
 ID  | Description                    | Status       | Created At       | Updated At
 ------------------------------------------------------------------------------------------

@@ -30,10 +30,10 @@ func ValidateStatus(status string) error {
 	return fmt.Errorf("invalid task status: %s", status)
 }
 
-func AddTask(description, filename string) error {
+func AddTask(description, filename string) (int, error) {
 	taskFile, err := ReadTasks(filename)
 	if err != nil {
-		return fmt.Errorf("failed to add task: %w", err)
+		return 0, fmt.Errorf("failed to add task: %w", err)
 	}
 
 	newTask := Task{
@@ -48,9 +48,9 @@ func AddTask(description, filename string) error {
 	taskFile.Tasks = append(taskFile.Tasks, newTask)
 
 	if err := WriteTasks(filename, taskFile); err != nil {
-		return fmt.Errorf("failed to save task: %w", err)
+		return 0, fmt.Errorf("failed to save task: %w", err)
 	}
-	return nil
+	return newTask.Id, nil
 }
 
 func UpdateTask(id int, description, filename string) error {

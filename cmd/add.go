@@ -17,12 +17,12 @@ func addCmd() *cobra.Command {
 		Args:  cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			description := args[0]
-			err := task.AddTask(description, filename)
+			id, err := task.AddTask(description, filename)
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "Error adding task: %v\n", err)
 				return
 			}
-			fmt.Println("Task added successfully")
+			fmt.Printf("Task added successfully (ID: %d)\n", id)
 		},
 	}
 }

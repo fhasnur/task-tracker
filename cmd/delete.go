@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 	"strconv"
 	"task-tracker/pkg/task"
 
@@ -16,15 +17,16 @@ func deleteCmd() *cobra.Command {
 		Run: func(cmd *cobra.Command, args []string) {
 			id, err := strconv.Atoi(args[0])
 			if err != nil {
-				fmt.Println("Invalid task ID:", err)
+				fmt.Fprintf(os.Stderr, "Error: Invalid task ID: %v\n", err)
 				return
 			}
 
 			err = task.DeleteTask(id, filename)
 			if err != nil {
-				fmt.Println("Error deleting task:", err)
+				fmt.Fprintf(os.Stderr, "Error deleting task: %v\n", err)
 				return
 			}
+
 			fmt.Println("Task deleted successfully")
 		},
 	}

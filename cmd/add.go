@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 	"task-tracker/pkg/task"
 
 	"github.com/spf13/cobra"
@@ -18,10 +19,10 @@ func addCmd() *cobra.Command {
 			description := args[0]
 			err := task.AddTask(description, filename)
 			if err != nil {
-				fmt.Println("Error adding task:", err)
+				fmt.Fprintf(os.Stderr, "Error adding task: %v\n", err)
 				return
 			}
-			fmt.Println("Task added succesfully")
+			fmt.Println("Task added successfully")
 		},
 	}
 }

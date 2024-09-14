@@ -2,6 +2,7 @@ package task
 
 import (
 	"errors"
+	"fmt"
 	"time"
 )
 
@@ -26,13 +27,13 @@ func ValidateStatus(status string) error {
 			return nil
 		}
 	}
-	return errors.New("invalid task status")
+	return fmt.Errorf("invalid task status: %s", status)
 }
 
 func AddTask(description, filename string) error {
 	taskFile, err := ReadTasks(filename)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to add task: %w", err)
 	}
 
 	newTask := Task{
@@ -46,20 +47,26 @@ func AddTask(description, filename string) error {
 	taskFile.LastId++
 	taskFile.Tasks = append(taskFile.Tasks, newTask)
 
-	return WriteTasks(filename, taskFile)
+	if err := WriteTasks(filename, taskFile); err != nil {
+		return fmt.Errorf("failed to save task: %w", err)
+	}
+	return nil
 }
 
 func UpdateTask(id int, description, filename string) error {
 	taskFile, err := ReadTasks(filename)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to update task: %w", err)
 	}
 
 	for i, task := range taskFile.Tasks {
 		if task.Id == id {
 			taskFile.Tasks[i].Description = description
 			taskFile.Tasks[i].UpdatedAt = time.Now()
-			return WriteTasks(filename, taskFile)
+			if err := WriteTasks(filename, taskFile); err != nil {
+				return fmt.Errorf("failed to save updated task: %w", err)
+			}
+			return nil
 		}
 	}
 
@@ -69,15 +76,19 @@ func UpdateTask(id int, description, filename string) error {
 func DeleteTask(id int, filename string) error {
 	taskFile, err := ReadTasks(filename)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to delete task: %w", err)
 	}
 
 	for i, task := range taskFile.Tasks {
 		if task.Id == id {
 			taskFile.Tasks = append(taskFile.Tasks[:i], taskFile.Tasks[i+1:]...)
-			return WriteTasks(filename, taskFile)
+			if err := WriteTasks(filename, taskFile); err != nil {
+				return fmt.Errorf("failed to save tasks after deletion: %w", err)
+			}
+			return nil
 		}
 	}
+
 	return errors.New("task not found")
 }
 
@@ -88,16 +99,20 @@ func MarkTask(id int, status, filename string) error {
 
 	taskFile, err := ReadTasks(filename)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to mark task: %w", err)
 	}
 
 	for i, task := range taskFile.Tasks {
 		if task.Id == id {
 			taskFile.Tasks[i].Status = status
 			taskFile.Tasks[i].UpdatedAt = time.Now()
-			return WriteTasks(filename, taskFile)
+			if err := WriteTasks(filename, taskFile); err != nil {
+				return fmt.Errorf("failed to save marked task: %w", err)
+			}
+			return nil
 		}
 	}
+
 	return errors.New("task not found")
 }
 
@@ -108,7 +123,7 @@ func ListTasks(status, filename string) ([]Task, error) {
 
 	taskFile, err := ReadTasks(filename)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to list tasks: %w", err)
 	}
 
 	var filteredTasks []Task

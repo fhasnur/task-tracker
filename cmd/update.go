@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 	"strconv"
 	"task-tracker/pkg/task"
 
@@ -16,16 +17,17 @@ func updateCmd() *cobra.Command {
 		Run: func(cmd *cobra.Command, args []string) {
 			id, err := strconv.Atoi(args[0])
 			if err != nil {
-				fmt.Println("Invalid task ID:", err)
+				fmt.Fprintf(os.Stderr, "Error: Invalid task ID: %v\n", err)
 				return
 			}
 
 			newDescription := args[1]
 			err = task.UpdateTask(id, newDescription, filename)
 			if err != nil {
-				fmt.Println("Error updating task:", err)
+				fmt.Fprintf(os.Stderr, "Error updating task: %v\n", err)
 				return
 			}
+
 			fmt.Println("Task updated successfully")
 		},
 	}

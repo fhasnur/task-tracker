@@ -3,6 +3,7 @@ package task
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"os"
 )
 
@@ -20,12 +21,12 @@ func ReadTasks(filename string) (TaskFile, error) {
 
 	file, err := os.ReadFile(filename)
 	if err != nil {
-		return taskFile, err
+		return taskFile, fmt.Errorf("failed to read file: %w", err)
 	}
 
 	err = json.Unmarshal(file, &taskFile)
 	if err != nil {
-		return taskFile, err
+		return taskFile, fmt.Errorf("failed to unmarshal JSON: %w", err)
 	}
 
 	return taskFile, nil
@@ -34,12 +35,12 @@ func ReadTasks(filename string) (TaskFile, error) {
 func WriteTasks(filename string, taskFile TaskFile) error {
 	fileData, err := json.MarshalIndent(taskFile, "", " ")
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to marshal tasks to JSON: %w", err)
 	}
 
 	err = os.WriteFile(filename, fileData, 0644)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to write tasks to file: %w", err)
 	}
 
 	return nil

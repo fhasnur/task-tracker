@@ -4,7 +4,7 @@ A command-line interface (CLI) tool to track and manage tasks. The tool allows y
 
 ## Installation
 
-To use the GitHub Activity CLI, you need to have Go installed on your machine.
+To use the Task Tracker CLI, you need to have Go installed on your machine.
 
 **Clone the Repository:**
 ```bash
@@ -28,51 +28,61 @@ Once built, you can run the CLI tool from your terminal. Below are the basic com
 ### Adding New Task
 To add a new task, run:
 ```bash
-./task-cli add "Buy groceries"
+./task-cli add [description]
 ```
-**Output**
+Example
 ```bash
-Task added successfully
+./task-cli add "Buy groceries"
+
+#Output: Task added successfully
 ```
 
 ### Updating a Task
 To update an existing task, use:
 ```bash
-./task-cli update 1 "Buy groceries and cook dinner"
+./task-cli update [id] [new description]
 ```
-**Output**
+Example
 ```bash
-Task updated successfully
+./task-cli update 1 "Buy groceries and cook dinner"
+
+#Output: Task updated successfully
 ```
 
 ### Deleting a Task
 To delete a task, run:
 ```bash
-./task-cli delete 1
+./task-cli delete [id]
 ```
-**Output**
+Example
 ```bash
-Task deleted successfully
+./task-cli delete 1
+
+#Output: Task deleted successfully
 ```
 
 ### Marking a Task as In-Progress
 To mark a task as in-progress, use:
 ```bash
-./task-cli mark-in-progress 1
+./task-cli mark-in-progress [id]
 ```
-**Output**
+Example
 ```bash
-Task marked as in-progress successfully
+./task-cli mark-in-progress 1
+
+#Output: Task marked as in-progress successfully
 ```
 
 ### Marking a Task as Done
 To mark a task as done, run:
 ```bash
-./task-cli mark-done 1
+./task-cli mark-done [id]
 ```
-**Output**
+Example
 ```bash
-Task marked as done successfully
+./task-cli mark-done 1
+
+#Output: Task marked as done successfully
 ```
 
 ### Listing All Tasks
@@ -98,7 +108,7 @@ To filter tasks by status (e.g., todo, in-progress or done), run:
 ```bash
 ./task-cli list todo
 ```
-**Example Output**
+Example Output
 ```bash
 ID  | Description                    | Status       | Created At       | Updated At
 ------------------------------------------------------------------------------------------
@@ -109,7 +119,7 @@ ID  | Description                    | Status       | Created At       | Updated
 ```bash
 ./task-cli list in-progress
 ```
-**Example Output**
+Example Output
 ```bash
 ID  | Description                    | Status       | Created At       | Updated At
 ------------------------------------------------------------------------------------------
@@ -121,7 +131,7 @@ ID  | Description                    | Status       | Created At       | Updated
 ```bash
 ./task-cli list done
 ```
-**Example Output**
+Example Output
 ```bash
 ID  | Description                    | Status       | Created At       | Updated At
 ------------------------------------------------------------------------------------------

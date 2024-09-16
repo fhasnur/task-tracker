@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-	"task-tracker/pkg/task"
+
+	"github.com/fhasnur/task-tracker/pkg/task"
 
 	"github.com/spf13/cobra"
 )

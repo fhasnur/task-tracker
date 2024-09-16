@@ -1,4 +1,4 @@
-module task-tracker
+module github.com/fhasnur/task-tracker
 
 go 1.22.0
 

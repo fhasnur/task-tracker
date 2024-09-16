@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
-	"task-tracker/cmd"
+
+	"github.com/fhasnur/task-tracker/cmd"
 )
 
 func main() {

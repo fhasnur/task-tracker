@@ -2,9 +2,10 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/fhasnur/task-tracker/pkg/task"
 	"os"
 	"strconv"
+
+	"github.com/fhasnur/task-tracker/internal/task"
 
 	"github.com/spf13/cobra"
 )

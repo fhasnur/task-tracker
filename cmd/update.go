@@ -5,7 +5,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/fhasnur/task-tracker/pkg/task"
+	"github.com/fhasnur/task-tracker/internal/task"
 
 	"github.com/spf13/cobra"
 )

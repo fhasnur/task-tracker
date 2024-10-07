@@ -133,3 +133,11 @@ ID  | Description                    | Status       | Created At       | Updated
 3   | Read a book                    | done         | 2024-09-11 23:06 | 2024-09-11 23:25
 5   | Learn coding                   | done         | 2024-09-12 16:56 | 2024-09-14 22:43
 ```
+
+## Contributing
+
+Feel free to submit pull requests or open issues for new features, improvements, or bug fixes.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
